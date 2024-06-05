@@ -29,8 +29,8 @@ class SinglyLinkedList:
 
 
 my_linkedlist = SinglyLinkedList()
-my_linkedlist.append(5)
-my_linkedlist.append(8)
+my_linkedlist.append(5)  
+my_linkedlist.append(8)   
 
 
 
@@ -90,38 +90,42 @@ sll.print_list()  # Output: 1 -> 2 -> 3 -> None
 
 
 
-# class PageNode:
-#     def __init__(self, url):
-#         self.url = url
-#         self.next = None
-#         self.prev = None
+class PageNode:
+    def __init__(self, url):
+        self.url = url 
+        self.prev = None
+        self.next = None
+       
+class BrowserHistory:
 
-# class BrowserHistory:
-#     def __init__(self):
-#         self.current = None
+    def __init__(self):
+        self.head = None
+        self.current = None # tail or end
 
-#     def visit(self, url):
-#         new_page = PageNode(url)
-#         if self.current:
-#             self.current.next = new_page
-#             new_page.prev = self.current
-#         self.current = new_page
+    def visit(self, url):
+        new_page = PageNode(url) # Z
 
-#     def back(self):
-#         if self.current and self.current.prev:
-#             self.current = self.current.prev
-#             print(f"Back to: {self.current.url}")
+        if not self.head:
+            self.head = new_page
+            self.current = new_page
+            return
+        
+        self.current.next = new_page
+        new_page.prev = self.current
+        self.current = new_page
+            
 
-#     def forward(self):
-#         if self.current and self.current.next:
-#             self.current = self.current.next
-#             print(f"Forward to: {self.current.url}")
+    def back(self):
+        pass
 
-# # Example usage
-# browser = BrowserHistory()
-# browser.visit("google.com")
-# browser.visit("github.com")
-# browser.visit("stackoverflow.com")
-# browser.back()  # Output: Back to: github.com
-# browser.back()  # Output: Back to: google.com
-# browser.forward()  # Output: Forward to: github.com
+    def forward(self):
+        pass
+
+# Example usage
+browser = BrowserHistory()
+browser.visit("google.com")
+browser.visit("github.com")
+browser.visit("stackoverflow.com")
+browser.back()  # Output: Back to: github.com
+browser.back()  # Output: Back to: google.com
+browser.forward()  # Output: Forward to: github.com
